@@ -1357,31 +1357,32 @@ window.addEventListener('scroll', function() {
   document.querySelector('.mobile-menu').classList.remove('open');
 });
 <script>
-// Auto-center region labels using getBBox
-(function() {
+<script>
+document.addEventListener("DOMContentLoaded", function() {
   var map = document.getElementById("italy-map");
   if (!map) return;
   var paths = map.querySelectorAll("path[data-state]");
   paths.forEach(function(p) {
-    var state = p.getAttribute("data-state");
-    var bbox = p.getBBox();
-    var cx = bbox.x + bbox.width / 2;
-    var cy = bbox.y + bbox.height / 2;
-    var txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    txt.setAttribute("x", cx);
-    txt.setAttribute("y", cy);
-    txt.setAttribute("text-anchor", "middle");
-    txt.setAttribute("dominant-baseline", "central");
-    txt.setAttribute("font-size", bbox.width > 80 ? "13" : bbox.width > 50 ? "11" : "9");
-    txt.setAttribute("fill", p.classList.contains("active") ? "#fff" : "#ccc");
-    txt.setAttribute("pointer-events", "none");
-    txt.setAttribute("font-weight", p.classList.contains("active") ? "bold" : "normal");
-    txt.textContent = state;
-    map.appendChild(txt);
+    try {
+      var state = p.getAttribute("data-state");
+      var bbox = p.getBBox();
+      var cx = bbox.x + bbox.width / 2;
+      var cy = bbox.y + bbox.height / 2;
+      var txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      txt.setAttribute("x", cx);
+      txt.setAttribute("y", cy);
+      txt.setAttribute("text-anchor", "middle");
+      txt.setAttribute("dominant-baseline", "central");
+      txt.setAttribute("font-size", bbox.width > 80 ? "13" : bbox.width > 50 ? "11" : "9");
+      txt.setAttribute("fill", p.classList.contains("active") ? "#fff" : "#ccc");
+      txt.setAttribute("pointer-events", "none");
+      txt.textContent = state;
+      map.appendChild(txt);
+    } catch(e) {}
   });
-})();
+});
 </script>
-</script></div></body>
+</body>
 <!-- v1.1 -->
 </html>
 <script>
